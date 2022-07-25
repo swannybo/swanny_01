@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP请求消息</title>
+    <link rel="stylesheet" href="./HTTP请求消息.css">
+    <script src="../jQuery中的Ajax/jquery.js"></script>
+    <script src="HTTP请求消息.js"></script>
+</head>
+
+<body>
+    <button class="btn1">发起GET请求</button>
+    <button class="btn2">发起POST请求</button>
+    <script>
+        $(function () {
+            $('#btn1').on('click', function () {
+                $.ajax({
+                    method: 'GET',
+                    url: 'http://www.liulongbin.top:3006/api/get',
+                    data: {
+                        name: 'swanny',
+                        age: 20,
+                        sex: '男'
+                    },
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+            })
+            $('#btn2').on('click', function () {
+                $.ajax({
+                    method: 'POST',
+                    url: 'http://www.liulongbin.top:3006/api/post',
+                    data: {
+                        name: 'swanny',
+                        age: 20,
+                        sex: '男'
+                    },
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+            })
+        })
+    </script>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", 'http://www.liulongbin.top:3006/api/addbook');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send({ bookname: 'bobo', author: 'swanny', publisher: '河南图书出版社' });
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        }
+    </script>
+</body>
+
+</html>
